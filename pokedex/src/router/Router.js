@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home } from '../pages/Home'
-import { Pokedetails } from '../pages/Pokedetails'
-import { Pokedex } from '../pages/Pokedex'
+import { Home } from '../pages/Home/Home'
+import { Pokedetails } from '../pages/PokedexDetail/Pokedetails'
+import { Pokedex } from '../pages/Pokedex/Pokedex'
 
 const Rotas = () => {
     return (
