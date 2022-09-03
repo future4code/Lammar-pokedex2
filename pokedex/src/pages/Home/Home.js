@@ -8,32 +8,41 @@ import { Footer, Header, HomePage, Main } from './HomeStyle';
 
 
 export function Home (){
-    const [pokemon, setPokemon] = useState(undefined)
+    
+    const [pokeList, setpokeList] = useState([])
+    const [pokeFront, setpokeFront] = useState(undefined)
+    
     const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
-    const array = [1,2]
-    const pokeList = array.forEach(callbackfn)
-    function callbackfn (num) {
-        axios.get(`${BASE_URL}${num}`).then((response) =>{
-            setPokemon(response.data) 
-        }).catch((error) =>{
-            console.log(error.message)
-        })
-        const pokemonImage = pokemon && pokemon.sprites.front_default
-        const pokemonName = pokemon && pokemon.name
-        return <PokemonCards pokeImage = {pokemonImage} pokeName = {pokemonName}/>
+    const limit = 20;
+    const page = 0;
+    const offset = page * 0;
 
+    function callbackfn (pokemon) {
+        return {name: pokemon.name, url: pokemon.url}
     }
 
+    useEffect(() => {
+        axios.get(`${BASE_URL}`).then((response) => {
+            setpokeList(response.data.results.map(callbackfn).map((pokemon, index) => {
+                return {name: pokemon.name, img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`}
+            }))
+            console.log(pokeList)            
+        })
+        
+    }
+    ,[])
+
+    const pokeDisplay = pokeList.map((pokemon) => {return <PokemonCards pokeName = {pokemon.name} pokeImage = {pokemon.img} ></PokemonCards>})
 
 
     return (
     <HomePage>
     <Header>
     <h1>Pokemon</h1>
-    <button>Ir para pokedex</button>    
+    <button>Ir para pokedex</button>
     </Header>
     <Main>
-    {pokeList}
+    {pokeDisplay}
     </Main>
     <Footer>
     </Footer>
