@@ -1,14 +1,14 @@
 import axios from 'axios';
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState }  from 'react';
+import {useNavigate} from 'react-router-dom'
 import { PokemonCards } from '../../Components/PokemonCards/PokemonCards';
-
-import { Footer, Header, HomePage, Main } from './HomeStyle';
+import * as RoutePages from '../../router/Coodinator'
+import { Button, Footer, Header, HomePage, Main } from './HomeStyle';
 
 
 
 export function Home (){
-    
+    const navigate = useNavigate();
     const [pokeList, setpokeList] = useState([])
     const [pokeFront, setpokeFront] = useState(undefined)
     
@@ -37,15 +37,15 @@ export function Home (){
 
     return (
     <HomePage>
-    <Header>
-    <h1>Pokemon</h1>
-    <button>Ir para pokedex</button>
-    </Header>
-    <Main>
-    {pokeDisplay}
-    </Main>
-    <Footer>
-    </Footer>
+        <Header>
+            <h1>Pokemon</h1>
+            <Button onClick={() => RoutePages.goPokedex(navigate)}>Ir para pokedex</Button>
+        </Header>
+        <Main>
+            {pokeDisplay}
+        </Main>
+        <Footer>
+        </Footer>
     </HomePage>
     
     
