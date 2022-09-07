@@ -4,13 +4,13 @@ import {useNavigate} from 'react-router-dom'
 import { PokemonCards } from '../../Components/PokemonCards/PokemonCards';
 import * as RoutePages from '../../router/Coodinator'
 import { Button, Footer, Header, HomePage, Main } from './HomeStyle';
-
+import {BASE_URL} from '../../constants/constants'
 
 
 export function Home (){
     const navigate = useNavigate();
     const [pokeFront, setpokeFront] = useState([])
-    const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
+    
     const limit = 20;
     const page = 0;
     const offset = page * 0;
