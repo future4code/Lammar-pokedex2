@@ -1,11 +1,13 @@
 import React from "react"
 import axios from 'axios';
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { PokemonCard, CardButtons, ButtonAdd, ButtonDetails, H1 } from "./PokemonCardsStyle"
 
 
+
 export function PokemonCards (props){
+    const navigate = useNavigate()
     
     
 return(
@@ -20,11 +22,10 @@ return(
 <ButtonAdd>
     Adicionar
 </ButtonAdd>
-<ButtonDetails>
-    detalhes
+<ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+    Detalhes
 </ButtonDetails>
     </CardButtons>
-   
 </PokemonCard>
 )
 }
