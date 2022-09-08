@@ -6,27 +6,21 @@ import { PokemonCard, CardButtons, ButtonAdd, ButtonDetails, H1 } from "./Pokemo
 
 
 
-export function PokemonCards (props){
-    const navigate = useNavigate()
-    
-    
-return(
+export function PokemonCards(props) {
+  const navigate = useNavigate();
 
-<PokemonCard>
-    
-        
-        <H1>{props.pokeName}</H1>
-        <img src={props.pokeImage}></img>
+  return (
+    <PokemonCard>
+      <H1>{props.pokeName}</H1>
+      <img src={props.pokeImage}></img>
 
-    <CardButtons>
-<ButtonAdd>
-    Adicionar
-</ButtonAdd>
-<ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
-    Detalhes
-</ButtonDetails>
-    </CardButtons>
-</PokemonCard>
-)
+      <CardButtons>
+        <ButtonAdd onClick={() => props.addToPokedex(props.pokeName)}>Adicionar</ButtonAdd>
+        <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+          Detalhes
+        </ButtonDetails>
+      </CardButtons>
+    </PokemonCard>
+  );
 }
 

@@ -1,11 +1,13 @@
 import './App.css';
 import Rotas from './router/Router';
+import { PokedexProvider } from './Context/PokedexProvider';
+
 
 function App() {
   return (
-    <div>
+    <PokedexProvider>
       <Rotas/>
-    </div>
+    </PokedexProvider>
   );
 }
 
