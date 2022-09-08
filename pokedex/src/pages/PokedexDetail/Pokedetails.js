@@ -62,11 +62,10 @@ export function Pokedetails (){
         <PokeDetailPage>
         <Header>
             <button onClick={() => RoutePages.goBack(navigate)}>Voltar</button>
-            <h1>Nome do Pokemon</h1>
+            <h1>{currentPoke.name}</h1>
             <button>Add/remove</button>    
         </Header>
         <Main>
-            <h1>{currentPoke.name}</h1>
             <img src={currentPoke.front_img}/>
             <img src = {currentPoke.back_img}/>
             <p>{currentPoke.type1}</p>
