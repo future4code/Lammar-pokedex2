@@ -52,6 +52,12 @@ export const PokemonCard = styled.div`
 `
 
 export const Footer = styled.footer`
+   display:flex;
+   flex-direction:row;
+   height: 5vh;
+   justify-content: space-between;
+   margin-right: 20vw;
+   margin-left: 20vw;
 
 
 `
