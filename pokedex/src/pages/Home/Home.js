@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { PagePickers } from '../../Components/PagePicker/PagePicker';
 import { PokemonCards } from "../../Components/PokemonCards/PokemonCards";
 import * as RoutePages from "../../router/Coodinator";
 import { Button, Footer, Header, HomePage, Main } from "./HomeStyle";
@@ -9,14 +10,15 @@ import { PokedexContext } from "../../Context/Context";
 export function Home() {
   const navigate = useNavigate();
   const [pokeDisplay, setpokeDisplay] = useState([]);
+  const [pokePage, setpokePage] = useState(1)
   const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
-  const page = 0;
-  const offset = page * 20;
+  const limit = 20;
+  const offset = (pokePage * limit);
   const pokeArray = [];
   const context = useContext(PokedexContext)
 
   useEffect(() => {
-    axios.get(`${BASE_URL}?offset=${offset}&limit=898`).then((response) => {
+    axios.get(`${BASE_URL}?limit=898`).then((response) => {
       response.data.results
         .map((pokemon) => {
           return { name: pokemon.name, url: pokemon.url };
@@ -38,12 +40,13 @@ export function Home() {
           });
         });
     });
-  }, [page]);
+  }, []);
+
 
   const pokeFront =
     pokeDisplay &&
     pokeDisplay
-      .filter((pokemon, index) => index < 20)
+      .filter((pokemon, index) => index >= (offset-limit) && index < offset)
       .map((pokemon) => (
         <PokemonCards
           pokeId={pokemon.id}
@@ -64,7 +67,9 @@ export function Home() {
         </Button>
       </Header>
       <Main>{pokeFront}</Main>
-      <Footer></Footer>
+      <Footer>
+        <PagePickers pageNumber = {pokePage} setPage = {setpokePage}></PagePickers>
+      </Footer>
     </HomePage>
   );
 }
