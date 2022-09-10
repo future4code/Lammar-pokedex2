@@ -19,9 +19,16 @@ export function PokemonCards(props) {
         <CardButtons>
           <ButtonAdd onClick={() => {
             context.addPokemon(props.pokeUrl)
-          }}>Adicionar</ButtonAdd>
+          }}>
+            <span>
+            Adicionar
+            </span>
+            </ButtonAdd>
           <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+            <span>
+
             Detalhes
+            </span>
           </ButtonDetails>
         </CardButtons>
       </PokemonCard>
@@ -36,9 +43,16 @@ export function PokemonCards(props) {
       <CardButtons>
         <ButtonRemove onClick={() => {
           context.removePokemon(props.pokeUrl)
-        }}>Remover</ButtonRemove>
+        }}>
+        <span>
+          Remover
+        </span>
+        </ButtonRemove>
         <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+          <span>
+
           Detalhes
+          </span>
         </ButtonDetails>
       </CardButtons>
     </PokemonCard>

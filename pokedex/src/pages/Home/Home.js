@@ -76,10 +76,14 @@ export function Home() {
   return (
     <HomePage>
       <Header>
-        <h1>Pokemon</h1>
+        <h1>Pokedex Labenu!</h1>
         <Button onClick={() => RoutePages.goPokedex(navigate)}>
-          Ir para pokedex
+          <span className="button-top">
+            Ir para pokedex 
+            <img src = "https://cdn-icons-png.flaticon.com/512/361/361998.png"/>
+          </span>
         </Button>
+
       </Header>
       <Main>{pokeFront}</Main>
       <Footer>
