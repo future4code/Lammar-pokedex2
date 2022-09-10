@@ -5,6 +5,35 @@ export const PokedexPage = styled.div `
 
 
 `
+
+export const WarningMessageDiv = styled.div`
+      display: flex;
+      flex-direction: column;
+      justify-content:space-evenly;
+      align-items:center;
+      width: 90vw;
+      height: 40vh;
+      border: 3px solid black;
+      border-radius: 1em;
+      background-color:#395aa1;
+
+      h1 {
+         color: #fddd4c;
+         -webkit-text-stroke: black 1px;
+         font-family: 'Secular One', sans-serif;
+         text-align: center;
+      }
+      
+`
+export const H1 = styled.h1 `
+   color: #fddd4c;
+   -webkit-text-stroke: black 1px;
+   font-family: 'Secular One', sans-serif;
+   text-align: center;
+` 
+
+
+
 export const Header =  styled.header `
    display: flex;
    justify-content: space-between;

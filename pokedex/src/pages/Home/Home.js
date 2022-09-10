@@ -47,16 +47,31 @@ export function Home() {
     pokeDisplay &&
     pokeDisplay
       .filter((pokemon, index) => index >= (offset-limit) && index < offset)
-      .map((pokemon) => (
-        <PokemonCards
-          pokeId={pokemon.id}
-          key={pokemon.key}
-          pokeName={pokemon.name}
-          pokeImage={pokemon.img}
-          pokeUrl={pokemon.url}
-          addToPokedex= {context.addToPokedex}
-        ></PokemonCards>
-      ));
+      .map((pokemon) => {
+        if(context.pokedexArray.includes(pokemon.url)){
+          return(
+            <PokemonCards
+              pokeId={pokemon.id}
+              key={pokemon.key}
+              pokeName={pokemon.name}
+              pokeImage={pokemon.img}
+              pokeUrl={pokemon.url}
+              pokeButton = {0}
+            ></PokemonCards>)
+        }
+        else{
+          return(
+            <PokemonCards
+              pokeId={pokemon.id}
+              key={pokemon.key}
+              pokeName={pokemon.name}
+              pokeImage={pokemon.img}
+              pokeUrl={pokemon.url}
+              pokeButton = {1}
+            ></PokemonCards>
+          )
+        }  
+      });
 
   return (
     <HomePage>
