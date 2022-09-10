@@ -1,17 +1,20 @@
 import axios from "axios";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Footer } from "../Home/HomeStyle";
 import { Header, Main, PokeDetailPage } from "./Pokedexdetails";
 import { BASE_URL } from "../../constants/constants";
 import * as RoutePages from "../../router/Coodinator";
 import { useNavigate } from "react-router-dom";
+import { PokedexContext } from "../../Context/Context";
 
 export function Pokedetails() {
+  const context = useContext(PokedexContext)
   const pathParams = useParams();
   const [currentPoke, setCurrentPoke] = useState({});
   const navigate = useNavigate();
+  const pokemonUrl = `${BASE_URL}${pathParams.id}/`
 
   useEffect(() => {
     axios.get(`${BASE_URL}${pathParams.id}`).then((response) => {
@@ -53,12 +56,44 @@ export function Pokedetails() {
     });
   }, []);
 
+  if(context.pokedexArray.includes(pokemonUrl)){
+    return (
+    <PokeDetailPage>
+      <Header>
+        <button onClick={() => RoutePages.goBack(navigate)}>Voltar</button>
+        <h1>{currentPoke.name}</h1>
+        <button onClick={() => context.removePokemon(pokemonUrl)}>
+          Remover da sua Pokédex
+        </button>
+      </Header>
+      <Main>
+        <img src={currentPoke.front_img} />
+        <img src={currentPoke.back_img} />
+        <p>{currentPoke.type1}</p>
+        <p>{currentPoke.type2}</p>
+        <p>{currentPoke.move1}</p>
+        <p>{currentPoke.move2}</p>
+        <p>{currentPoke.move3}</p>
+        <p>HP: {currentPoke.hp}</p>
+        <p>Attack: {currentPoke.attack}</p>
+        <p>Defense: {currentPoke.defense}</p>
+        <p>Special Attack: {currentPoke.special_attack}</p>
+        <p>Special Defense: {currentPoke.special_defense}</p>
+        <p>Speed: {currentPoke.speed}</p>
+      </Main>
+      <Footer></Footer>
+    </PokeDetailPage>
+    )
+  }
+
   return (
     <PokeDetailPage>
       <Header>
         <button onClick={() => RoutePages.goBack(navigate)}>Voltar</button>
         <h1>{currentPoke.name}</h1>
-        <button>Add/remove</button>
+        <button onClick={() => context.addPokemon(pokemonUrl)} >
+          Adicionar a sua Pokédex
+        </button>
       </Header>
       <Main>
         <img src={currentPoke.front_img} />

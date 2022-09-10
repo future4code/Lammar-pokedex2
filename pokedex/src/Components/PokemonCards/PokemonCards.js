@@ -1,13 +1,32 @@
-import React from "react"
 import axios from 'axios';
-import { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { PokemonCard, CardButtons, ButtonAdd, ButtonDetails, H1 } from "./PokemonCardsStyle"
+import { PokemonCard, CardButtons, ButtonAdd, ButtonDetails, H1, ButtonRemove } from "./PokemonCardsStyle"
+import { PokedexContext } from "../../Context/Context";
 
 
 
 export function PokemonCards(props) {
   const navigate = useNavigate();
+  const context = useContext(PokedexContext)
+
+  if(props.pokeButton){
+    return (
+      <PokemonCard>
+        <H1>{props.pokeName}</H1>
+        <img src={props.pokeImage}></img>
+  
+        <CardButtons>
+          <ButtonAdd onClick={() => {
+            context.addPokemon(props.pokeUrl)
+          }}>Adicionar</ButtonAdd>
+          <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+            Detalhes
+          </ButtonDetails>
+        </CardButtons>
+      </PokemonCard>
+    );
+  }
 
   return (
     <PokemonCard>
@@ -15,7 +34,9 @@ export function PokemonCards(props) {
       <img src={props.pokeImage}></img>
 
       <CardButtons>
-        <ButtonAdd onClick={() => props.addToPokedex(props.pokeName)}>Adicionar</ButtonAdd>
+        <ButtonRemove onClick={() => {
+          context.removePokemon(props.pokeUrl)
+        }}>Remover</ButtonRemove>
         <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
           Detalhes
         </ButtonDetails>

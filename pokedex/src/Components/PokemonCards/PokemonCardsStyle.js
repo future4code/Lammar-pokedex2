@@ -51,6 +51,21 @@ cursor: pointer;
 }
 
 `
+
+export const ButtonRemove = styled.button`
+font-family: 'Secular One', sans-serif;
+background-color : red;
+border: none;
+border-radius: 1em;
+padding: .7em;
+cursor: pointer;
+
+:hover{
+    background-color:lightsalmon;
+}
+
+`
+
 export const ButtonDetails = styled.button`
     font-family: 'Secular One', sans-serif;
     background-color: rgba(3,169,244,1);

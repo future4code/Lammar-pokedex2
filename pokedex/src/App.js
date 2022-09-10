@@ -3,6 +3,7 @@ import Rotas from './router/Router';
 import { PokedexProvider } from './Context/PokedexProvider';
 
 
+
 function App() {
   return (
     <PokedexProvider>
