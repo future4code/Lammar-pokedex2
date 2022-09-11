@@ -33,7 +33,7 @@ export const H1 = styled.h1`
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  background-color: #dd122c;
+  background-color: #f34243;
   font-family: "Pokemon Solid", sans-serif;
   align-items: center;
   h1 {

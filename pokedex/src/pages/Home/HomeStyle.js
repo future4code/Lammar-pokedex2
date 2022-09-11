@@ -8,17 +8,10 @@ export const HomePage = styled.div `
 export const Header =  styled.header `
    display: flex;
    justify-content: space-between;
-   background-color: #dd122c;
+   background-color: #f34243;
    font-family: 'Pokemon Solid', sans-serif;
    align-items: center;
 
-   h1{
-      margin: 0 1em;
-      color: #fddd4c;  
-      -webkit-text-stroke: black 1px;
-      font-size: 2.5em;
-      letter-spacing:.1em;
-   }
 `
 export const Button =  styled.button ` 
    --button_radius: 0.75em;
@@ -31,7 +24,8 @@ export const Button =  styled.button `
    background: var(--button_outline_color);
    cursor: pointer;
    img {
-      width: 2em;
+      width: 1em;
+      margin: 0 .5em ;
    }
    span {
    display: block;

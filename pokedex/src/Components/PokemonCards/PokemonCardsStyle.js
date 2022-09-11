@@ -6,7 +6,7 @@ export const PokemonCard = styled.div`
   justify-content: center;
   align-items: center;
   width: 25vw;
-  height: 60vh;
+  height: 72vh;
   border-radius: 0.4em;
   background: rgb(255, 255, 255);
   box-shadow: 0.3em 0.3em 0.7em #00000015;
@@ -19,10 +19,7 @@ export const PokemonCard = styled.div`
 
   img {
     align-items: center;
-    justify-content: center;
-    border: 1px solid;
-    border-radius: 1em;
-    background-color: #dedede;
+    justify-content: center;   
     width: 15vw;
   }
 `;
@@ -30,16 +27,23 @@ export const H1 = styled.h1`
   color: #fddd4c;
   -webkit-text-stroke: rgb(54, 106, 189) 0.5px;
   font-family: 'Pokemon Solid', sans-serif;
+  font-size: 2em;
   text-align: center;
   text-transform: capitalize;
   letter-spacing:.1em;
+  line-height: 1em;
+  margin: .5em 0;
 `;
 export const CardButtons = styled.div`
   display: flex;
-  gap: 1em;
-  margin-top: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .3em;
+  margin: 2em 0;
+ 
 `;
 export const ButtonAdd = styled.button`
+/* From uiverse.io by @Voxybuns */
   --button_radius: 0.75em;
   --button_color: #e8e8e8;
   --button_outline_color: #000000;
@@ -76,6 +80,7 @@ export const ButtonAdd = styled.button`
 `;
 
 export const ButtonRemove = styled.button`
+/* From uiverse.io by @Voxybuns */
   --button_radius: 0.75em;
   --button_color: #e8e8e8;
   --button_outline_color: #000000;
@@ -111,6 +116,7 @@ export const ButtonRemove = styled.button`
 `;
 
 export const ButtonDetails = styled.button`
+/* From uiverse.io by @Voxybuns */
   --button_radius: 0.75em;
   --button_color: #e8e8e8;
   --button_outline_color: #000000;
