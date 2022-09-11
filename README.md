@@ -14,8 +14,9 @@ O que funciona:
 
 O que não funciona: 
 - Faltou uma animação de loading quando renderizar os Pokemóns.
--A fonte do Pokemon não está sendo renderizada no surge.
-Fora isso, nenhum erro aparente.
+- A fonte do Pokemon não está sendo renderizada no surge.
+- Devido ao erro da Fonte, alguns detalhes de styled precisam ser corrigidos.
+- Fora isso, nenhum erro aparente.
 
 ##IMAGENS
 
