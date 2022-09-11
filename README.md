@@ -5,7 +5,7 @@ Nome dos integrantes:
 - Cainã Perotti
 - Victor de Oliveira da Motta
 
-Link do Surge: https://truthful-gate.surge.sh/
+Link do Surge: berserk-mouth.surge.sh
 
 O que funciona:
 - Renderização pela Api pública (https://pokeapi.co/docs/v2#pokemon) de imagens, gifs, nomes e propriedades dos Pokemóns.
@@ -14,7 +14,6 @@ O que funciona:
 
 O que não funciona: 
 - Faltou uma animação de loading quando renderizar os Pokemóns.
-- A fonte do Pokemon não está sendo renderizada no surge.
 - Devido ao erro da Fonte, alguns detalhes de styled precisam ser corrigidos.
 - Fora isso, nenhum erro aparente.
 
