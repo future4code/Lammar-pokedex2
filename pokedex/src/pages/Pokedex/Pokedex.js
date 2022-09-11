@@ -27,7 +27,7 @@ export function Pokedex() {
           pokeArray.push({
             name: response.data.name,
             img: response.data.sprites.front_default,
-            id: index + 1,
+            id: response.data.id,
             url: pokemon,
             key: index,
           });
@@ -54,7 +54,8 @@ export function Pokedex() {
     return (
       <PokedexPage>
         <Header>
-          <h1>Pokemon</h1>
+          <h1>Pokédex</h1>
+        
           <ButtonReturn onClick={() => RoutePages.goBack(navigate)}>
             <span>
             Voltar para lista
@@ -64,7 +65,7 @@ export function Pokedex() {
         <Main>
           <WarningMessageDiv>
             <h1>Você ainda não adicionou nenhum pokémon a sua Pokédex!</h1>
-            <img src = "https://br.web.img3.acsta.net/newsv7/19/05/08/00/25/4780689.jpg"/>
+            <img src = "https://br.web.img3.acsta.net/newsv7/19/05/08/00/25/4780689.jpg" alt = "Pikachu assustado"/>
             <h1>Retorne para a Home para adicionar Pokémons.</h1>
           </WarningMessageDiv>
         </Main>

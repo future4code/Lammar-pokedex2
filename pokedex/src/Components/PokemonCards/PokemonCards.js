@@ -1,6 +1,5 @@
-import axios from 'axios';
-import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { PokemonCard, CardButtons, ButtonAdd, ButtonDetails, H1, ButtonRemove } from "./PokemonCardsStyle"
 import { PokedexContext } from "../../Context/Context";
 
@@ -9,12 +8,13 @@ import { PokedexContext } from "../../Context/Context";
 export function PokemonCards(props) {
   const navigate = useNavigate();
   const context = useContext(PokedexContext)
+  const currentPage = useLocation();
 
   if(props.pokeButton){
     return (
       <PokemonCard>
         <H1>{props.pokeName}</H1>
-        <img src={props.pokeImage}></img>
+        <img src={props.pokeImage} alt = {props.pokeName}></img>
   
         <CardButtons>
           <ButtonAdd onClick={() => {
@@ -37,8 +37,9 @@ export function PokemonCards(props) {
 
   return (
     <PokemonCard>
+      
       <H1>{props.pokeName}</H1>
-      <img src={props.pokeImage}></img>
+      <img src={props.pokeImage} alt = {props.pokeName}></img>
 
       <CardButtons>
         <ButtonRemove onClick={() => {
@@ -48,9 +49,16 @@ export function PokemonCards(props) {
           Remover
         </span>
         </ButtonRemove>
-        <ButtonDetails onClick={() => navigate(`pokemon/${props.pokeId}`)}>
+        <ButtonDetails onClick={
+          () =>{
+          if (currentPage.pathname === "/pokedex"){
+            navigate(`../pokemon/${props.pokeId}`)
+          } else {
+            navigate(`pokemon/${props.pokeId}`)
+          }
+          }
+          }>
           <span>
-
           Detalhes
           </span>
         </ButtonDetails>

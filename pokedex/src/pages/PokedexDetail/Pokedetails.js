@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Footer } from "../Home/HomeStyle";
-import { Header, Main, PokeDetailPage } from "./Pokedexdetails";
+import { DivPokeFront, Header, Main, PokeDetailPage, DivPokeBack, DivPokeStats, DivPokeType, DivPokeMove } from "./PokedexDetailsStyled";
+import { ButtonAdd, ButtonRemove, ButtonDetails } from "../../Components/PokemonCards/PokemonCardsStyle";
 import { BASE_URL } from "../../constants/constants";
 import * as RoutePages from "../../router/Coodinator";
 import { useNavigate } from "react-router-dom";
 import { PokedexContext } from "../../Context/Context";
+
 
 export function Pokedetails() {
   const context = useContext(PokedexContext);
@@ -15,6 +16,9 @@ export function Pokedetails() {
   const [currentPoke, setCurrentPoke] = useState({});
   const navigate = useNavigate();
   const pokemonUrl = `${BASE_URL}${pathParams.id}/`;
+  
+
+  
 
   useEffect(() => {
     axios.get(`${BASE_URL}${pathParams.id}`).then((response) => {
@@ -22,8 +26,8 @@ export function Pokedetails() {
       if (pokemon.types.length <= 1) {
         setCurrentPoke({
           name: pokemon.name,
-          front_img: pokemon.sprites.front_default,
-          back_img: pokemon.sprites.back_default,
+          front_img: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
+          back_img: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["back_default"],
           type1: pokemon.types[0].type.name,
           move1: pokemon.moves[0].move.name,
           move2: pokemon.moves[1].move.name,
@@ -38,8 +42,8 @@ export function Pokedetails() {
       } else {
         setCurrentPoke({
           name: pokemon.name,
-          front_img: pokemon.sprites.front_default,
-          back_img: pokemon.sprites.back_default,
+          front_img: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
+          back_img: pokemon["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["back_default"],
           type1: pokemon.types[0].type.name,
           type2: pokemon.types[1].type.name,
           move1: pokemon.moves[0].move.name,
@@ -56,40 +60,52 @@ export function Pokedetails() {
     });
   }, []);
 
+
   if (context.pokedexArray.includes(pokemonUrl)) {
     return (
       <PokeDetailPage>
         <Header>
-          <button onClick={() => RoutePages.goBack(navigate)}>Voltar</button>
+          <ButtonDetails onClick={() => RoutePages.goBack(navigate)}>
+            <span>Voltar</span>
+          </ButtonDetails>
           <h1>{currentPoke.name}</h1>
-          <button onClick={() => context.removePokemon(pokemonUrl)}>
-            Remover da sua Pokédex
-          </button>
+          <ButtonRemove onClick={() => context.removePokemon(pokemonUrl)}>
+            <span>Remover da sua Pokédex</span>
+          </ButtonRemove>
         </Header>
         <Main>
-          <div>
-            <img src={currentPoke.front_img} />
-            <img src={currentPoke.back_img} />
-          </div>
-          <div>
+            <DivPokeFront>
+            <img src={currentPoke.front_img} alt = {`${currentPoke.name} de frente`}/>
+            </DivPokeFront>
+            
+            <DivPokeBack>
+            <img src={currentPoke.back_img} alt = {`${currentPoke.name} de costas`} />
+            </DivPokeBack>
+          <DivPokeStats>
+            <h1>Status</h1>
             <p>HP: {currentPoke.hp}</p>
             <p>Attack: {currentPoke.attack}</p>
             <p>Defense: {currentPoke.defense}</p>
             <p>Special Attack: {currentPoke.special_attack}</p>
             <p>Special Defense: {currentPoke.special_defense}</p>
             <p>Speed: {currentPoke.speed}</p>
-          </div>
-          <div>
+            <img src="https://i.gifer.com/4xjS.gif" alt ="Gif Pokébola"></img>
+          </DivPokeStats>
+          <DivPokeType>
+          <h1>Type</h1>
             <p>{currentPoke.type1}</p>
             <p>{currentPoke.type2}</p>
-          </div>
-          <div>
+            <img src="https://i.gifer.com/5dDj.gif" alt = "Gif Tipos dos Pokémons"></img> 
+          </DivPokeType>
+          <DivPokeMove>
+          <h1>Moves</h1>
             <p>{currentPoke.move1}</p>
             <p>{currentPoke.move2}</p>
             <p>{currentPoke.move3}</p>
-          </div>
+            <img src = "https://i.gifer.com/4bXB.gif" alt = "Gif Pikachu Preparando um Ataque"/>
+          </DivPokeMove>
         </Main>
-        <Footer></Footer>
+  
       </PokeDetailPage>
     );
   }
@@ -97,36 +113,47 @@ export function Pokedetails() {
   return (
     <PokeDetailPage>
       <Header>
-        <button onClick={() => RoutePages.goBack(navigate)}>Voltar</button>
+        <ButtonDetails onClick={() => RoutePages.goBack(navigate)}>
+          <span>Voltar</span>
+        </ButtonDetails>
         <h1>{currentPoke.name}</h1>
-        <button onClick={() => context.addPokemon(pokemonUrl)}>
-          Adicionar a sua Pokédex
-        </button>
+        <ButtonAdd onClick={() => context.addPokemon(pokemonUrl)}>
+          <span>Adicionar a sua Pokédex</span>
+        </ButtonAdd>
       </Header>
       <Main>
-        <div>
-          <img src={currentPoke.front_img} />
-          <img src={currentPoke.back_img} />
-        </div>
-        <div>
-          <p>HP: {currentPoke.hp}</p>
-          <p>Attack: {currentPoke.attack}</p>
-          <p>Defense: {currentPoke.defense}</p>
-          <p>Special Attack: {currentPoke.special_attack}</p>
-          <p>Special Defense: {currentPoke.special_defense}</p>
-          <p>Speed: {currentPoke.speed}</p>
-        </div>
-        <div>
-          <p>{currentPoke.type1}</p>
-          <p>{currentPoke.type2}</p>
-        </div>
-        <div>
+      <DivPokeFront>
+            <img src={currentPoke.front_img} alt = {`${currentPoke.name} de frente`} />
+            </DivPokeFront>
+            
+            <DivPokeBack>
+            <img src={currentPoke.back_img} alt = {`${currentPoke.name} de costas`} />
+            </DivPokeBack>
+          <DivPokeStats>
+            <h1>Status</h1>
+            <p>HP: {currentPoke.hp}</p>
+            <p>Attack: {currentPoke.attack}</p>
+            <p>Defense: {currentPoke.defense}</p>
+            <p>Special Attack: {currentPoke.special_attack}</p>
+            <p>Special Defense: {currentPoke.special_defense}</p>
+            <p>Speed: {currentPoke.speed}</p>
+            <img src="https://i.gifer.com/4xjS.gif" alt ="Gif Pokébola"></img>
+          </DivPokeStats>
+        <DivPokeType>
+
+            <h1>Type</h1>
+            <p>{currentPoke.type1}</p>
+            <p>{currentPoke.type2}</p>
+            <img src="https://i.gifer.com/5dDj.gif" alt = "Gif Tipos dos Pokémons"></img> 
+        </DivPokeType>
+        <DivPokeMove>
+        <h1>Moves</h1>
           <p>{currentPoke.move1}</p>
           <p>{currentPoke.move2}</p>
           <p>{currentPoke.move3}</p>
-        </div>
+          <img src = "https://i.gifer.com/4bXB.gif" alt = "Gif Pikachu Preparando um Ataque"/>
+        </DivPokeMove>
       </Main>
-      <Footer></Footer>
-    </PokeDetailPage>
+      </PokeDetailPage>
   );
 }

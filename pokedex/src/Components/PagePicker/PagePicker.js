@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { PagePicker } from "./PagePickerStyle";
 
 export function PagePickers(props) {
@@ -23,7 +20,7 @@ export function PagePickers(props) {
           <button
             onClick={(e) => {
               topFunction();
-              props.setPage(45);
+              props.setPage(31);
             }}
           >
             <span>Última Página</span>
@@ -31,7 +28,7 @@ export function PagePickers(props) {
         </PagePicker>
       );
       break;
-    case 45:
+    case 31:
       return (
         <PagePicker>
           <button
@@ -84,7 +81,7 @@ export function PagePickers(props) {
       <button
         onClick={(e) => {
           topFunction();
-          props.setPage(45);
+          props.setPage(31);
         }}
       >
         <span>Última Página</span>

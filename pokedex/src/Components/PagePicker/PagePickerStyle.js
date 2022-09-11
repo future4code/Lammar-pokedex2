@@ -6,6 +6,7 @@ export const PagePicker = styled.div`
   justify-content: space-around;
   width: 100vw;
   gap: 1em;
+  
 
   button {
     --button_radius: 0.75em;
